@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{fontsize}
+
+% Set smaller margins
+\geometry{margin=1in}
+
+% Set smaller font size
+\renewcommand{\normalsize}{\fontsize{10}{12}\selectfont}
+
+\title{SemEval-2025 Task-3 — Mu-SHROOM}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This task is part of SemEval-2025 Task-3—Mu-SHROOM, a multilingual shared-task focused on detecting hallucinations in outputs from instruction-tuned language models (LLMs). It builds on the previous SHROOM task with several key changes: it covers multiple languages, including Arabic, Chinese, English, Finnish, French, German, Hindi, Italian, Spanish, and Swedish; emphasizes LLM outputs; and requires participants to predict the locations of hallucinations within the generated text. More information is available on the \href{https://helsinki-nlp.github.io/shroom/}{official task website}.
+
+The datasets provided include a sample set, validation set, and unlabeled train set, with each data point formatted as a JSON object containing a unique identifier (\texttt{id}), language (\texttt{lang}), model input question (\texttt{model\_input}), model identifier (\texttt{model\_id}), generated output (\texttt{model\_output\_text}), hard labels indicating hallucination spans, and soft labels with start, end, and empirical probability of hallucination. 
+
+\small
+% MAKE THIS CODE TO APPENDIX
+\begin{verbatim}
+{"id": 1, "lang": "EN", "model_input": "When was the restoration of the Sándor Palace completed?", 
+"model_output_text": "The restoration of Sándor Palace, also known as the Buda Castle ...", 
+"model_id": "TheBloke/Mistral-7B-Instruct-v0.2-GGUF", 
+"soft_labels": [{"start": 33, "prob": 0.3333333333, "end": 53}], "hard_labels": [[53, 64]]}
+\end{verbatim}
+\normalsize
+
+Participants are tasked with detecting hallucinations in the provided text. They will be evaluated based on two character-level metrics: \textbf{Intersection-over-Union}, which measures the overlap between characters marked as hallucinations in the gold reference and those predicted by participants, and \textbf{Probability Correlation}, which assesses how well the probabilities assigned by participants align with those observed by annotators. 
+
+This is a preliminary overview of our proposal; further refinements will be made as the task develops.
+
+\end{document}
+
+% USE BOLD TEXT TO GIVE EACH TEXT A TOPIC: 1.DATASET 2.EVALUATION TOPIC NAME YOU CAN NAME THEM YOURSELF
